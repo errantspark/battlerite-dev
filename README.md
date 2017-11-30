@@ -27,7 +27,7 @@ npm i -s battlerite-dev
 Initiialize the API like so
 ```
 const Battlerite_Dev = require('battlerite-dev')
-const api = new Battlerite_Dev("your_very_long_api_key_as_a_string") 
+const api = new Battlerite_Dev({key: "your_very_long_api_key"}) 
 ```
 a function exists corresponding to each API endpoint, consuming an `options` object and returning a promise that resolves to the requested JSON, for example:
 ```
