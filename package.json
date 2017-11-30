@@ -13,6 +13,10 @@
     "type": "git",
     "url": "git+https://github.com/errantspark/battlerite-dev.git"
   },
+  "keywords": [
+    "battlerite",
+    "api"
+  ],
   "author": "errantspark",
   "license": "MIT",
   "bugs": {
