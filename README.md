@@ -5,7 +5,6 @@ a javascript wrapper for the battlerite API
 * [About](#about)
 * [Install](#install)
 * [Usage](#usage)
-* [More Info](#more info)
 * [Todo/Wishlist](#todo/wishlist)
 * [License](#license)
 
@@ -43,9 +42,10 @@ let options = {
 } 
 api.matches(options).then(r => console.log(r))
 ```
-
-
-
+or
+```
+api.match('id_hash_as_string').then(r => console.log(r))
+```
 
 ## Todo/Wishlist
 
