@@ -1,2 +1,2 @@
-# battlerite-dev
-node/browser tools for accessing the battlerite developer api
+# battlerite-api
+a javascript wrapper for the battlerite API
