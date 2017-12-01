@@ -4,7 +4,7 @@ a javascript wrapper for the battlerite API
 ## Contents
 * [About](#about)
 * [Install](#install)
-* [Usage Examples](#usage examples)
+* [Usage Examples](#usage-examples)
 * [Documentation](#documetation)
 * [Todo/Wishlist](#todo/wishlist)
 * [License](#license)
@@ -53,11 +53,11 @@ api.match('id_hash_as_string').then(r => console.log(r))
 ```
 ## Documentation
 ### Battlerite API Notes
-The [matches](http://battlerite-docs.readthedocs.io/en/latest/matches/matches.html#get-a-collection-of-matches) endpoint doesn't quite behave as the docs state.
+The [matches](http://battlerite-docs.readthedocs.io/en/latest/matches/matches.html#get-a-collection-of-matches) endpoint doesn't quite behave as the docs state.  
 Not only that, but there's currently no way of getting a playerId <=> playerName relationship using the official api, if you hit the unofficial API though you can get the data
 
-`filter[gameMode]` returns a 404 if you use `ranked` or `casual` as the filterstring, but it does work if you use `1733162751`, which is sent as the `data.attributes.gameMode` with every(?) match right now
-`filter[teamName]` returns a 404 regardless of query? i've tried the team name as a string, and also the long id hash that is provided in roster objects
+`filter[gameMode]` returns a 404 if you use `ranked` or `casual` as the filterstring, but it does work if you use `1733162751`, which is sent as the `data.attributes.gameMode` with every(?) match right now  
+`filter[teamName]` returns a 404 regardless of query? i've tried the team name as a string, and also the long id hash that is provided in roster objects  
 
 ### Methods
 ```javascript
