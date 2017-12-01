@@ -67,7 +67,6 @@ Not only that, but there's currently no way of getting a playerId <=> playerName
 
 ## Todo/Wishlist
 
-* Handling of telemetry data
 * Proper code documentation (JSDoc?)
 * Rewrite the whole thing in typescript/purescript
 * Tests?
