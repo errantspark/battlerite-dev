@@ -1,6 +1,6 @@
 {
   "name": "battlerite-dev",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "a javascript wrapper for the battlerite API",
   "main": "index.js",
   "directories": {
