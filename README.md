@@ -90,11 +90,32 @@ interface TelemetryData {
 type Telemetry = TememetryObject[]
 
 ```
-#### Structures.UserRoundSpell
-this one is incomplete so i'm not going to bother trying to figure out what it means
+#### Structures.MatchStart
 ```typescript
-interface UserRoundSpell extends TelemetryData {
-  scoreType: string //"USES", "DAMAGE_RECEIVED", "CONTROL_DONE", "CONTROL_RECEIVED", "DAMAGE_DONE", "ENERGY_RECEIVED", "HEALING_DONE", "HEALING_RECEIVED", "ENERGY_USED"
+interface MatchStart extends TelemetryData {
+  gameMode: number
+  mapID: string
+  matchID: string 
+  region: string
+  teamSize: number
+  type: string //same as servertype in reserveduser
+  version: string //"1.0"
+}
+```
+#### Structures.MatchFinishedEvent
+```typescript
+interface MatchFinishedEvent extends TelemetryData {
+  region: string // "us_southwest", "us_southeast", "us_west"
+  matchLength: number
+  teamOneScore: number
+  teamTwoScore: number
+  leavers: array
+}
+```
+#### Structures.RoundFinishedEvent
+```typescript
+interface RoundFinishedEvent extends TelemetryData {
+
 }
 ```
 #### Structures.RoundEvent
@@ -107,15 +128,8 @@ interface RoundEvent extends TelemetryData {
   value: number
 }
 ```
-#### Structures.DeathEvent
-gives the death times of users, curiously it doesn't mention in which round the death occured
-```typescript
-interface DeathEvent extends TelemetryData {
-  userID: string
-}
-```
 #### Structures.MatchReservedUser
-some data about each user, there's one of these for every user in a round
+some data about each user, there's one of these for every user in a match
 ```typescript
 interface MatchReservedUser extends TelemetryData {
   accountId: string //same as userID except with inconsistent caps
@@ -137,32 +151,11 @@ interface MatchReservedUser extends TelemetryData {
   totalTimePlayed: number
 }
 ```
-#### Structures.RoundFinishedEvent
+#### Structures.DeathEvent
+gives the death times of users, curiously it doesn't mention in which round the death occured
 ```typescript
-interface RoundFinishedEvent extends TelemetryData {
-
-}
-```
-#### Structures.MatchFinishedEvent
-```typescript
-interface MatchFinishedEvent extends TelemetryData {
-  region: string // "us_southwest", "us_southeast", "us_west"
-  matchLength: number
-  teamOneScore: number
-  teamTwoScore: number
-  leavers: array
-}
-```
-#### Structures.MatchStart
-```typescript
-interface MatchStart extends TelemetryData {
-  gameMode: number
-  mapID: string
-  matchID: string 
-  region: string
-  teamSize: number
-  type: string //same as servertype in reserveduser
-  version: string //"1.0"
+interface DeathEvent extends TelemetryData {
+  userID: string
 }
 ```
 #### Structures.ServerShutdown
@@ -171,8 +164,17 @@ interface ServerShutdown extends TelemetryData {
 
 }
 ```
+#### Structures.UserRoundSpell
+this one is incomplete so i'm not going to bother trying to figure out what it means
+```typescript
+interface UserRoundSpell extends TelemetryData {
+  scoreType: string //"USES", "DAMAGE_RECEIVED", "CONTROL_DONE", "CONTROL_RECEIVED", "DAMAGE_DONE", "ENERGY_RECEIVED", "HEALING_DONE", "HEALING_RECEIVED", "ENERGY_USED"
+}
+```
 #### com.stunlock.battlerite.team.TeamUpdateEvent
+this has how much MMR you won or lost
 #### com.stunlock.service.matchmaking.avro.QueueEvent
+this is the matchmaker data, some of it overkaps with reserved user
 
 
 ### Methods
