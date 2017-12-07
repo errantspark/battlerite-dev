@@ -113,10 +113,32 @@ interface MatchFinishedEvent extends TelemetryData {
 }
 ```
 #### Structures.RoundFinishedEvent
+the most interesting data end up here, mostly per-round score for the players
 ```typescript
 interface RoundFinishedEvent extends TelemetryData {
-
+  winningTeam: number //one indexed because fuck you
+  round: number //zero indexed because zero consistency
+  roundLength: number //in seconds, as an int
+  playerStats: PlayerStats[]
 }
+
+interface PlayerStats {
+  userID: string
+  abilityUses: number
+  damageDone: number
+  damageReceived: number
+  disablesDone: number
+  disablesReceived: number
+  healingDone: number
+  healingReceived: number
+  energyGained: number
+  energyUsed: number
+  kills: number
+  deaths: number
+  score: number
+  timeAlive: number
+}
+
 ```
 #### Structures.RoundEvent
 ```typescript
@@ -161,20 +183,35 @@ interface DeathEvent extends TelemetryData {
 #### Structures.ServerShutdown
 ```typescript
 interface ServerShutdown extends TelemetryData {
-
+  matchTime: number //a different number of seconds than matchLength, i think this is greater in all cases
+  reason: string // only seen "EMPTY_SERVER" | "MATCH_COMPLETED" so far
 }
 ```
 #### Structures.UserRoundSpell
-this one is incomplete so i'm not going to bother trying to figure out what it means
+this one appears to be missing entries, there's on average ~60 of these per match which is way fewer than the actions I expect to happen, also the damage/healing totals don't add up to the ones in the other sources
+I can't really figure out what the selection criteria for these is, at some point I may screencap a private match where we test some things out, and then try and correlate the data
 ```typescript
 interface UserRoundSpell extends TelemetryData {
   scoreType: string //"USES", "DAMAGE_RECEIVED", "CONTROL_DONE", "CONTROL_RECEIVED", "DAMAGE_DONE", "ENERGY_RECEIVED", "HEALING_DONE", "HEALING_RECEIVED", "ENERGY_USED"
+  scoreTypeId: number //presumably the id of the spell
+  value: number
+  round: number //zero indexed 
+  character: number
+  sourceTypeId: number
 }
 ```
 #### com.stunlock.battlerite.team.TeamUpdateEvent
 this has how much MMR you won or lost
+```typescript
+interface TeamUpdateEvent extends TelemetryData {
+}
+```
 #### com.stunlock.service.matchmaking.avro.QueueEvent
 this is the matchmaker data, some of it overkaps with reserved user
+```typescript
+interface TeamUpdateEvent extends TelemetryData {
+}
+```
 
 
 ### Methods
