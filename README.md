@@ -84,13 +84,13 @@ returns a promise detailing the API status, you don't need an API key for this o
 returns a promise that resolves to the API response for the  players endpoint
 #### api.telemetry(matchid: string, options: TelemetryOptions)
 returns a promise that resolves to an array of telemetry objects
-#### api.rawTelemetry(url: string)
-returns a promise that resolves to an array of telemetry objects using the full url
 ```typescript
 interface TelemetryOptions {
   url: boolean //if true returns just the URL
 }
 ```
+#### api.rawTelemetry(url: string)
+returns a promise that resolves to an array of telemetry objects using the full url
 ### Battlerite API Notes
 The [matches](http://battlerite-docs.readthedocs.io/en/latest/matches/matches.html#get-a-collection-of-matches) endpoint doesn't quite behave as the docs state.  
 Not only that, but there's currently no way of getting a playerId <=> playerName relationship using the official api, if you hit the unofficial API though you can get the data
