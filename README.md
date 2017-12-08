@@ -76,16 +76,19 @@ interface Options {
 }
 ```
 returns a promise that resolves to the API response
-#### api.match(id: string)
+#### api.match(matchid: string)
 returns a promise that resolves to the API response
 #### api.status()
 returns a promise detailing the API status, you don't need an API key for this one
-#### api.telemetry(options TelemetryOptions)
+#### api.player(playerid: string | string[])
+returns a promise that resolves to the API response for the  players endpoint
+#### api.telemetry(matchid: string, options: TelemetryOptions)
 returns a promise that resolves to an array of telemetry objects
+#### api.rawTelemetry(url: string)
+returns a promise that resolves to an array of telemetry objects using the full url
 ```typescript
 interface TelemetryOptions {
-  id: string //match id
-  returnUrl: boolean //if true returns just the URL
+  url: boolean //if true returns just the URL
 }
 ```
 ### Battlerite API Notes
@@ -94,6 +97,8 @@ Not only that, but there's currently no way of getting a playerId <=> playerName
 
 `filter[gameMode]` returns a 404 if you use `ranked` or `casual` as the filterstring, but it does work if you use `1733162751`, which is sent as the `data.attributes.gameMode` with every(?) match right now  
 `filter[teamName]` returns a 404 regardless of query? i've tried the team name as a string, and also the long id hash that is provided in roster objects  
+
+when retrieving a match, you can only count on some of the data to be present in player.stats, things like the meaningless "attachment" or "emote" numbers are always there, damage is not :(
 
 ### Telemetry API Notes
 ```typescript
