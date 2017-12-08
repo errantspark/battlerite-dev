@@ -1,4 +1,4 @@
-# battlerite-api
+ battlerite-api
 a javascript wrapper for the battlerite API
 
 ## Contents
@@ -54,6 +54,40 @@ or
 api.match('id_hash_as_string').then(r => console.log(r))
 ```
 ## Documentation
+### Methods
+#### api.matches(options: Options)
+the options object is a simple JSON representation of the possibly filter queries for the API
+```typescript
+interface Options {
+  sort: "createdAt" | "-createdAt"
+  page: {
+    offset: number //number of matches to offset start of return data
+    limit: number //max number of matches to report
+  },
+  filter: {
+    createdAt: {
+      start: //TODO look up what this is supposed to be 
+      end: 
+    },
+    teamNames: any // no idea, anything i've tried returns a 404
+    playerIds: string | string[] //returns matches that include ALL playersIds
+    gameMode: number //only works with 1733162751, maybe there's anotherone for the battleground mode
+  }
+}
+```
+returns a promise that resolves to the API response
+#### api.match(id: string)
+returns a promise that resolves to the API response
+#### api.status()
+returns a promise detailing the API status, you don't need an API key for this one
+#### api.telemetry(options TelemetryOptions)
+returns a promise that resolves to an array of telemetry objects
+```typescript
+interface TelemetryOptions {
+  id: string //match id
+  returnUrl: boolean //if true returns just the URL
+}
+```
 ### Battlerite API Notes
 The [matches](http://battlerite-docs.readthedocs.io/en/latest/matches/matches.html#get-a-collection-of-matches) endpoint doesn't quite behave as the docs state.  
 Not only that, but there's currently no way of getting a playerId <=> playerName relationship using the official api, if you hit the unofficial API though you can get the data
@@ -133,7 +167,7 @@ interface PlayerStats {
   healingReceived: number
   energyGained: number
   energyUsed: number
-  kills: number
+  kills: number // this may be some sort of binary encoding? it's not the # of player kills for sure
   deaths: number
   score: number
   timeAlive: number
@@ -145,7 +179,7 @@ interface PlayerStats {
 interface RoundEvent extends TelemetryData {
   character: number
   round: number
-  timeIntoRound: number
+  timeIntoRound: number //as far as I can tell this is always zero
   type: string //"MOUNT_DURATION", "ENERGY_ABILITY_USED", "ENERGY_SHARD_PICKUP", "HEALTH_SHARD_PICKUP", "ULTIMATE_USED", "MOUNTS_AFTER_ELEVATOR", "RUNE_LASTHIT", "ALLY_DEATH_ENERGY_PICKUP"
   value: number
 }
@@ -214,14 +248,11 @@ interface TeamUpdateEvent extends TelemetryData {
 ```
 
 
-### Methods
-```javascript
-
-```
 
 
 ## Todo/Wishlist
 
+* Rate Limiting
 * Proper code documentation (JSDoc?)
 * Rewrite the whole thing in typescript/purescript
 * Tests?
