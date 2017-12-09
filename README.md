@@ -12,7 +12,7 @@ a javascript wrapper for the battlerite API
 ## About
 A modular API wrapper for the [Battlerite](https://www.battlerite.com) [Developer API](https://developer.battlerite.com). Currently there is a module that provides a simple `endpoint querystring` => `json object` function. (`lib/node-api.js`) I plan to write a function that provides the same interface for the browser. A second module (`lib/lib.js`) consumes the first and provides an fully featured JavaScript API interface. An entrypoint for inclusion in node.js programs is provided in `index.js`  
 
-Last known to be compatible with API `v7.5.1`
+Last known to be compatible with API `v7.6.0`
 
 ### Prior Art
 * https://github.com/carlerikjohan/battlerite-api
@@ -84,6 +84,7 @@ returns a promise detailing the API status, you don't need an API key for this o
 returns a promise that resolves to the API response for the  players endpoint
 #### api.telemetry(matchid: string, options: TelemetryOptions)
 returns a promise that resolves to an array of telemetry objects
+be aware that this consumes a call to the battlerite API to fetch the telemetry URL
 ```typescript
 interface TelemetryOptions {
   url: boolean //if true returns just the URL
@@ -91,6 +92,7 @@ interface TelemetryOptions {
 ```
 #### api.rawTelemetry(url: string)
 returns a promise that resolves to an array of telemetry objects using the full url
+this is useful when you've already got match data retrieved somewhere as calls to the telemetry api are not rate-limited and do not require an API key
 ### Battlerite API Notes
 The [matches](http://battlerite-docs.readthedocs.io/en/latest/matches/matches.html#get-a-collection-of-matches) endpoint doesn't quite behave as the docs state.  
 Not only that, but there's currently no way of getting a playerId <=> playerName relationship using the official api, if you hit the unofficial API though you can get the data
