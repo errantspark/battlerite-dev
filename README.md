@@ -12,7 +12,10 @@ a javascript wrapper for the battlerite API
 ## About
 A modular API wrapper for the [Battlerite](https://www.battlerite.com) [Developer API](https://developer.battlerite.com). Currently there is a module that provides a simple `endpoint querystring` => `json object` function. (`lib/node-api.js`) I plan to write a function that provides the same interface for the browser. A second module (`lib/lib.js`) consumes the first and provides an fully featured JavaScript API interface. An entrypoint for inclusion in node.js programs is provided in `index.js`  
 
-Last known to be compatible with API `v7.6.0`
+Last known to be compatible with  
+Battlerite API `v1.5.0`  
+Gamelocker API `v7.6.0`
+
 
 ### Prior Art
 * https://github.com/carlerikjohan/battlerite-api
@@ -22,7 +25,7 @@ My approach is decidedly more minimal than either of those, using much less code
 
 * https://github.com/jlajoie/battlerite-api/
 
-This is a tool which provides a wrapper around the internal API as used by the game itself, unfortunately that API is about a million times more useful than the official one (go figure)
+This is a tool which provides a wrapper around the internal API as used by the game itself, unfortunately that API is about a thousand times more useful than the official one, though to Stunlock's credit, they're updating quick.
 
 ## Install
 You're going to want to have a recent node.
@@ -81,7 +84,12 @@ returns a promise that resolves to the API response
 #### api.status()
 returns a promise detailing the API status, you don't need an API key for this one
 #### api.player(playerid: string | string[])
-returns a promise that resolves to the API response for the  players endpoint
+takes a single playerid as a string or an array of up to 6 playerid strings
+returns a promise that resolves to the API response for the players endpoint
+#### api.players(options: Options)
+same as matches 
+#### api.teams(options: Options)
+same as matches 
 #### api.telemetry(matchid: string, options: TelemetryOptions)
 returns a promise that resolves to an array of telemetry objects
 be aware that this consumes a call to the battlerite API to fetch the telemetry URL
