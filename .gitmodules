@@ -1,0 +1,3 @@
+[submodule "battlerite-assets"]
+	path = battlerite-assets
+	url = git@github.com:gamelocker/battlerite-assets.git
