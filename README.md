@@ -56,6 +56,31 @@ or
 ```javascript
 api.match('id_hash_as_string').then(r => console.log(r))
 ```
+###
+Complete Async/Await example for royale data.
+```javascript
+const Battlerite_Dev = require('battlerite-dev')
+const api = new Battlerite_Dev({key: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhYzJlMmYzMC1mNjM0LTAxMzYtNjMzYS0wYTU4NjQ2MDIwYzYiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNTQ3MDM1NDgyLCJwdWIiOiJzdHVubG9jay1zdHVkaW9zIiwidGl0bGUiOiJiYXR0bGVyaXRlIiwiYXBwIjoiYmVzdC1hcHAtNmQ1NDRhODYtOTIzZi00YTk1LWIzM2QtNTE3ZTNjZmNkNTI5Iiwic2NvcGUiOiJjb21tdW5pdHkiLCJsaW1pdCI6MTB9.k61INpXh8iNN09Vb8lFT9z4mdK1T-hSbPactCxxLCWI "}) 
+
+const getAndPrintRoyaleMatches = async () => {
+    try {
+        const options = {
+            filter: {
+                serverType: ['ROYALRUMBLESOLO']
+            }
+        }
+        const matches = await api.matches(options);
+        console.log(matches);
+    }
+    catch(err) {
+        console.error(err)
+    }
+    
+};
+
+getAndPrintRoyaleMatches();
+```
+
 ## Documentation
 ### Methods
 #### api.matches(options: Options)
